@@ -1,0 +1,12 @@
+#!/bin/bash
+# This script will make it easy to make scripts
+
+file_name=$1
+
+if [ -e "$file_name" ]
+then
+	echo "The file $file_name already exists."
+else
+	cp /Users/samegel/scripts/template.sh $file_name
+	vim $file_name
+fi
