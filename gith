@@ -10,24 +10,23 @@ done
 
 git status $cmd
 
-read -p "(a) Add these files (c) RESET and commit just these files (q) quit: " yesorno
+read -p "(a) Add these files (c) RESET and commit just these files (q) quit: " choice
 
-if [[ $yesorno == a ]]
+if [[ $choice == a ]]
 then
 	git add $cmd
 	git status 
-elif [[ $yesorno == c ]]
+elif [[ $choice == c ]]
 then
 	git reset HEAD
 	git add $cmd
 	git commit
-elif [[ $yesorno == q ]]
+elif [[ $choice == q ]]
 then
 	echo "Done"
 else
 	cat<< END
 	Wrong input...
-	Must enter y or n...
 	Please try again.
 END
 fi
