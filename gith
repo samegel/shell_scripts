@@ -1,0 +1,12 @@
+#!/bin/bash
+# This will 'git' the status of htm files containing the passed args.
+
+args=("$@")
+cmd=""
+
+for (( i = 0; i < $#; i+=1 )); do
+	cmd+=" *${args[$i]}*"
+done
+echo "ECHO THE TOTAL CMD HERE $cmd"
+git status $cmd
+echo "done"
