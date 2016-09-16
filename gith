@@ -7,4 +7,27 @@ cmd=""
 for (( i = 0; i < $#; i+=1 )); do
 	cmd+=" *${args[$i]}*"
 done
+
 git status $cmd
+
+read -p "(a) Add these files (c) RESET and commit just these files (q) quit: " yesorno
+
+if [[ $yesorno == a ]]
+then
+	git add $cmd
+	git status 
+elif [[ $yesorno == c ]]
+then
+	git reset HEAD
+	git add $cmd
+	git commit
+elif [[ $yesorno == q ]]
+then
+	echo "Done"
+else
+	cat<< END
+	Wrong input...
+	Must enter y or n...
+	Please try again.
+END
+fi
