@@ -8,7 +8,15 @@ for (( i = 0; i < $#; i+=1 )); do
 	cmd+=" *${args[$i]}*"
 done
 
-git status $cmd
+mods_exist=$(git status --porcelain $cmd)
+
+if [[ $mods_exist == "" ]]
+then
+	echo "Could not find any modified or new files with the specified keywords."
+	exit 1
+else
+	git status $cmd
+fi
 
 read -p "(a) Add these files (c) RESET and commit just these files (q) quit: " choice
 
