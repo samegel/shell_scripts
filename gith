@@ -13,7 +13,7 @@ mods_exist=$(git status --porcelain $cmd)
 if [[ $mods_exist == "" ]]
 then
 	echo "Could not find any modified or new files with the specified keywords."
-	exit 1
+	exit 0
 else
 	git status $cmd
 fi
@@ -31,7 +31,7 @@ then
 	git commit
 elif [[ $choice == q ]]
 then
-	echo "Done"
+	exit 0
 else
 	cat<< END
 	Wrong input...
