@@ -1,0 +1,20 @@
+#!/bin/bash
+# Promote uniformity by ensuring 'minor edits' have same commit msg
+
+args=("$@")
+
+read -p "RESET and commit the files as minor edits? (y/n): " choice
+
+if [[ $choice == y ]]
+then
+	git reset HEAD
+	for (( i = 0; i < $#; i+=1 )); do
+		git add ${args[$i]}
+		git commit -m "minor edit"
+	done
+elif [[ $choice == n ]]
+then
+	echo "Nothing ventured, nothing gained."
+else
+	echo "Incorrect input."
+fi
