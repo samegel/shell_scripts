@@ -7,6 +7,6 @@ if [ -e "$file_name" ]
 then
 	echo "The file $file_name already exists."
 else
-	cp /Users/samegel/scripts/template.sh $file_name
+	cp ~/bin/template.sh $file_name
 	vim $file_name
 fi
