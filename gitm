@@ -3,6 +3,16 @@
 
 args=("$@")
 
+mods_exist=$(git status --porcelain $args)
+
+if [[ $mods_exist == "" ]]
+then
+	echo "Could not find any new or modified files matching arguments."
+	exit 0
+else
+	git status $args
+fi
+
 read -p "RESET and commit the files as minor edits? (y/n): " choice
 
 if [[ $choice == y ]]
