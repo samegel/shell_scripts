@@ -1,0 +1,22 @@
+#!/bin/bash
+# This 'installs' a script in the bin for custom scripts
+
+infile=$1
+
+if [[ -x $infile ]]
+then
+	cp $infile ~/bin
+	echo "Installed"
+else
+	read -p "Not an executable. Install anyway? (y/n): " check
+	if [[ $check == y ]]
+	then
+		cp $infile ~/bin
+		echo "Installed"
+	elif [[ $check == n ]]
+	then
+		echo "Not installed."
+	else
+		echo "Not a valid response. Not installed."
+	fi
+fi
