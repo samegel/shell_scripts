@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for (( i = $1; i < $3; i+=$2 ))
+do
+	cat<< END
+	.height-$i {
+		height: $i px;
+	}
+END
+done
+
+
