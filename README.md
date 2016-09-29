@@ -6,7 +6,7 @@ Disclaimer: These are just experimental. No one vouches for them.
 If you have this:
 
 ```
-$ sts
+$ git status
 On branch example
 Your branch is ahead of 'origin/example' by 9 commits.
   (use "git push" to publish your local commits)
