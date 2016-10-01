@@ -6,6 +6,7 @@ then
 	echo "IS JPEG"
 else
 	echo "IS NOT JPEG"
+	exit 1
 fi
 
 if [[ $2 == "r" ]]
