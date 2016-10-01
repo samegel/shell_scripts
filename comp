@@ -7,3 +7,13 @@ then
 else
 	echo "IS NOT JPEG"
 fi
+
+if [[ $2 == "r" ]]
+then
+	echo "yes"
+elif [[ $2 == "i" ]]
+then
+	echo "still yes"
+else
+	echo "wrong input"
+fi
