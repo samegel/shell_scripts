@@ -1,0 +1,9 @@
+#!/bin/bash
+# Fun with compression
+
+if [[ $(file -b $1) =~ JPEG ]]
+then
+	echo "IS JPEG"
+else
+	echo "IS NOT JPEG"
+fi
