@@ -1,6 +1,8 @@
 #!/bin/bash
 # Fun with compression
 
+rn='^[0-9]+$'
+
 if [[ $(file -b $1) =~ JPEG ]]
 then
 	echo "IS JPEG"
@@ -9,12 +11,45 @@ else
 	exit 1
 fi
 
+if ! [[ $3 =~ $rn ]]
+then
+	echo "Arg $3 is not a number" >&2; exit 1
+fi
+
 if [[ $2 == "r" ]]
 then
-	echo "yes"
+	echo "Is r"
+	if [[ $4 =~ $rn && $5 =~ $rn ]]
+	then
+		echo "Both $4 and $5 are numbers."
+		for (( i=0; i <= $3; i+=1 ))
+		do
+			echo "the loop is at $i"
+			sleep 5
+			quality=$(jot -r 1 $4 $5)
+			echo "The quality is $quality"
+			jpegoptim -m$quality $1
+			if (( (( $i % 5 )) == 0 ))
+			then
+				cp $1 newfile$i.jpg
+			fi
+		done
+	else
+		echo "$4 and/or $5 is not a number."
+	fi
 elif [[ $2 == "i" ]]
 then
-	echo "still yes"
+	echo "Is i"
+	for (( i=0; i <= $3; i+=1 ))
+	do
+		echo "the loop is at $i"
+		jpegoptim -m85 $1
+		if (( (( $i % 5 )) == 0 ))
+		then
+			cp $1 newfile$i.jpg
+		fi
+	done
 else
-	echo "wrong input"
+	echo "Not correct arg."
+	exit 1
 fi
