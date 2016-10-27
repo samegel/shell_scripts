@@ -1,0 +1,9 @@
+#!/bin/bash
+
+args=("$@")
+cmd=""
+
+for (( i = 0; i < $#; i+=1 )); do
+	cp ~/bin/template.htm ${args[$i]}.htm
+done
+
