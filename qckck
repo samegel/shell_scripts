@@ -1,0 +1,11 @@
+#!/bin/bash
+
+branch=$1
+list_file=$2
+cmd=""
+
+while read line; do
+  cmd=" checkout $branch $line"
+  echo $cmd
+  git $cmd
+done <$2
