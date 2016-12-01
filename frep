@@ -1,0 +1,6 @@
+#!/bin/bash
+# find and replace in file list according to sed script file
+
+while read -r line; do
+	sed -i'' -f /c/Users/samuel.egel/Desktop/dict.sed $line
+done < /c/Users/samuel.egel/Desktop/list.txt
