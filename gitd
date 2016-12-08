@@ -1,0 +1,19 @@
+#!/bin/bash
+# This will 'git' the diff of files containing keyword args
+args=("$@")
+cmd=""
+
+for (( i=0; i < $#; i+=1 )); do
+	cmd+=" *${args[$i]}*"
+done
+
+diff_exists=$(git diff $cmd)
+
+if [[ $diff_exists == "" ]]
+then
+	echo "Could not find diffs for the keywords specified."
+	git status $cmd
+	
+else
+	git diff --color=always | less -Nmr
+fi
