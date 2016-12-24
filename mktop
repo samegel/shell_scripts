@@ -4,6 +4,6 @@ args=("$@")
 cmd=""
 
 for (( i = 0; i < $#; i+=1 )); do
-	cp ~/bin/template.htm ${args[$i]}.htm
+	cp ~/bin/htm.htm ${args[$i]}.htm
 done
 
