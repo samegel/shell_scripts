@@ -15,5 +15,5 @@ then
 	git status $cmd
 	
 else
-	git diff --color=always | less -Nmr
+	git diff --color=always $cmd | less -Nmr
 fi
