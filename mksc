@@ -8,5 +8,4 @@ then
 	echo "The file $file_name already exists."
 else
 	cp ~/bin/shebang.sh $file_name
-	vim $file_name
 fi
