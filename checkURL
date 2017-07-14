@@ -1,0 +1,10 @@
+#!/bin/bash
+
+list=$1
+
+while read -r line
+do
+	echo The url is: $line
+	response=$(curl -I $line 2>/dev/null | grep -Eo -m1 "\s\d{3}\s")
+	echo The response is $response
+done < $list
