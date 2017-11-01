@@ -8,16 +8,16 @@ input_current=$1
 input_new=$2
 
 # Find current image name w/path
-original=`find -iname $input_current`
+original=`find -iname "$input_current"`
 
 # Rename the image if there is one find match
 if [[ -f $original ]]; then
 	new=`echo $original | sed "s/$input_current/$input_new/g"`
-	mv $original $new
+	mv "$original" "$new"
 
 	# Rename the props file if there is one
 	if [[ -f $original.props ]]; then
-		mv $original.props $new.props
+		mv "$original.props" "$new.props"
 	fi
 else
 	echo $input_current may have multiple matches
@@ -25,5 +25,5 @@ fi
 
 # Replace the current name w/the new name in links
 grep -Irl --exclude-dir={Analyzer,.git,Output,FileSync,Users,Reports,Project} "$input_current" . | sed '/bio.flprj/d' | while read -r file; do
-	sed -i.bak "s/$input_current/$input_new/g" "$file"
+	sed -i'' "s/$input_current/$input_new/g" "$file"
 done
