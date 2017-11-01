@@ -5,23 +5,18 @@
 
 # Input current name and new desired name WITH extension
 input_current=$1
-echo input_current = $input_current
 input_new=$2
-echo input_new is $input_new
 
 # Find current image name w/path
 original=`find -iname $input_current`
-echo FOUND $original
 
 # Rename the image if there is one find match
 if [[ -f $original ]]; then
 	new=`echo $original | sed "s/$input_current/$input_new/g"`
-	echo NEW IS $new
 	mv $original $new
 
 	# Rename the props file if there is one
 	if [[ -f $original.props ]]; then
-		echo ORIGINAL PROPS = $original.props
 		mv $original.props $new.props
 	fi
 else
@@ -30,6 +25,5 @@ fi
 
 # Replace the current name w/the new name in links
 grep -Irl --exclude-dir={Analyzer,.git,Output,FileSync,Users,Reports,Project} "$input_current" . | sed '/bio.flprj/d' | while read -r file; do
-	echo FOUND FILE $file
 	sed -i.bak "s/$input_current/$input_new/g" "$file"
 done
