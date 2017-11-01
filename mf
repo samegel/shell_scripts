@@ -19,11 +19,12 @@ if [[ -f $original ]]; then
 	if [[ -f $original.props ]]; then
 		mv "$original.props" "$new.props"
 	fi
+
+	# Replace the current name w/the new name in links
+	grep -Irl --exclude-dir={Analyzer,.git,Output,FileSync,Users,Reports,Project} "$input_current" . | sed '/bio.flprj/d' | while read -r file; do
+		sed -i'' "s/$input_current/$input_new/g" "$file"
+	done
 else
 	echo $input_current may have multiple matches
 fi
 
-# Replace the current name w/the new name in links
-grep -Irl --exclude-dir={Analyzer,.git,Output,FileSync,Users,Reports,Project} "$input_current" . | sed '/bio.flprj/d' | while read -r file; do
-	sed -i'' "s/$input_current/$input_new/g" "$file"
-done
