@@ -8,7 +8,7 @@ input_current=$1
 input_new=$2
 
 # Find current image name w/path
-original=`find -iname "$input_current"`
+original=`find -name "$input_current"`
 
 # Rename the image if there is one find match
 if [[ -f $original ]]; then
