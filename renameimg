@@ -1,0 +1,11 @@
+#!/bin/bash
+# This is a quick way to rename a series of Screenshots taken on a Mac.
+
+count=1
+prefix="put-file-prefix-here"
+
+ls -1 Screen* | while read -r image; do
+		cp "$image" $prefix$count.png
+		count=$(( count + 1 ))
+	done
+
