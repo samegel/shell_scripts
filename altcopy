@@ -1,0 +1,15 @@
+#!/bin/bash
+# Copies even lines (set count to 1) or odd lines (set count to 0).
+
+count=0
+
+input_file=$1
+output_file=$2
+
+while read -r line; do
+	mod2=$(( count % 2 ))
+	if [[ $mod2 != 0 ]]; then
+		echo $line >> $output_file
+	fi
+	count=$(( count + 1 ))
+done < $input_file
