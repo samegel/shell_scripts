@@ -1,0 +1,10 @@
+#!/bin/bash
+# Count how many times a file is linked in a directory
+
+dir=$1
+
+for file in $(ls $dir); do
+	count=$(grep --exclude-dir={.git,Analyzer,Sublime} -Ehor $file . | wc -l | sed -E 's/^[ \t]*//g')
+	echo $file:$count >> log.txt
+done
+
