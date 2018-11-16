@@ -1,0 +1,9 @@
+#!/bin/bash
+# To display all occurances of a term in a Flare project for easy comparison
+# of language consistency.
+
+search_term=$1
+flags=$2
+context=$3
+
+grep -$flags --color=always --exclude-dir={Analyzer,Output,FileSync,Reports,Images,.git,Users,Imports,Skins} --context=$context "$search_term" | less -Nmr
