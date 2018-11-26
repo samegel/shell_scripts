@@ -1,0 +1,53 @@
+#!/bin/bash
+# Create a report about MadCap Flare Targets
+
+output_file=$1
+folder=""
+
+# Count targets in Project folder
+
+function count_targets() {
+
+	target_count=`find . -iname "*.fltar" | wc -l`
+	echo $target_count
+
+}
+
+# Write information to the top of the file
+
+function write_header() {
+
+	echo "The total number of targets is: "`count_targets` >> $output_file
+
+}
+
+# List the targets, separated by headings for each top level folder
+
+function list_targets() {
+
+for target in `find . -iname "*.fltar" | sed -E 's/^\.\///g'`; do
+	
+	new_folder=`grep -Eo "^[A-Za-z0-9-]*/" <<< $target`
+
+	if [[ $new_folder == $folder ]]
+	then
+		echo "$target" >> $output_file
+	else
+		echo "# "$new_folder >> $output_file
+		echo "$target" >> $output_file
+		folder=$new_folder
+	fi
+
+done
+
+}
+
+function main() {
+	
+	write_header
+	list_targets
+
+}
+
+main
+
