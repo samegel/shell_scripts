@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "This is the EUID $EUID"
+
+if [[ $EUID -ne 0 ]]; then
+	echo "You are not root"
+	exit 1
+else
+
+
+fi
