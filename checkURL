@@ -2,9 +2,8 @@
 
 list=$1
 
-while read -r line
+while read -r url
 do
-	echo The url is: $line
-	response=$(curl -I $line 2>/dev/null | grep -Eo -m1 "\s\d{3}\s")
-	echo The response is $response
+	response=$(curl -I $url 2>/dev/null | grep -Eo "\s[0-9]{3}\s")
+	echo $url = $response
 done < $list
